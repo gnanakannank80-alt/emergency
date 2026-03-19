@@ -1,0 +1,66 @@
+/* Custom internal styles beyond Tailwind utilities */
+
+/* Hide scrollbar for cleaner mobile look while mapping flex-1 overflow */
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+::-webkit-scrollbar-track {
+    background: transparent; 
+}
+::-webkit-scrollbar-thumb {
+    background: #cbd5e1; 
+    border-radius: 10px;
+}
+.dark ::-webkit-scrollbar-thumb {
+    background: #475569; 
+}
+
+/* Safe Area Support for newer iOS devices */
+.pb-safe {
+    padding-bottom: env(safe-area-inset-bottom);
+}
+
+/* Nav Button Active States */
+.nav-btn.active {
+    color: #ef4444; /* text-primary */
+}
+.nav-btn.active .nav-icon {
+    transform: translateY(-2px);
+}
+
+/* Custom Animation for Splash */
+@keyframes fadeOut {
+    from { opacity: 1; }
+    to { opacity: 0; visibility: hidden; }
+}
+.splash-hide {
+    animation: fadeOut 0.5s ease-out forwards;
+}
+
+/* Leaflet map overrides */
+.leaflet-container {
+    font-family: 'Inter', sans-serif;
+}
+.dark .leaflet-layer,
+.dark .leaflet-control-zoom-in,
+.dark .leaflet-control-zoom-out,
+.dark .leaflet-control-attribution {
+    filter: invert(100%) hue-rotate(180deg) brightness(95%) contrast(90%);
+}
+
+/* Toast animations */
+@keyframes slideDown {
+    from { transform: translateY(-100%); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+@keyframes slideUp {
+    from { transform: translateY(0); opacity: 1; }
+    to { transform: translateY(-100%); opacity: 0; }
+}
+.toast-enter {
+    animation: slideDown 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+.toast-exit {
+    animation: slideUp 0.3s ease-in forwards;
+}
